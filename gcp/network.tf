@@ -11,8 +11,8 @@ resource "google_compute_subnetwork" "terraform-subnet" {
 }
 
 resource "google_compute_firewall" "allow_ssh" {
-  name    = "allow-ssh"
-  network = google_compute_network.terraform_net.self_link
+  name      = "allow-ssh"
+  network   = google_compute_network.terraform_net.self_link
   direction = "INGRESS"
 
   allow {
@@ -24,7 +24,7 @@ resource "google_compute_firewall" "allow_ssh" {
     protocol = "icmp"
   }
 
-  target_tags = [var.tag]
-  source_ranges = [ "0.0.0.0/0" ]
-  priority = 65000
+  target_tags   = [var.tag]
+  source_ranges = ["0.0.0.0/0"]
+  priority      = 65000
 }

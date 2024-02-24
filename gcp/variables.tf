@@ -6,6 +6,10 @@ variable "zone" {
   default = "us-central1-c"
 }
 
+variable "instance_type" {
+  default = "e2-micro"
+}
+
 variable "project" {
   default = "terraform-gcp-415220"
 }

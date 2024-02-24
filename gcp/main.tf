@@ -23,7 +23,7 @@ resource "google_compute_disk" "default_boot_disk" {
 
 resource "google_compute_instance" "terraform_instance" {
   name                      = "terraform-instance"
-  machine_type              = "e2-micro"
+  machine_type              = var.instance_type
   zone                      = var.zone
   allow_stopping_for_update = true
 
