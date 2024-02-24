@@ -11,3 +11,13 @@ variable "project" {
 }
 
 variable "credentials_file" {}
+
+variable "tag" {
+  default = "terraform-vm"
+}
+
+variable "ssh_user" {
+  default = "remote-user"
+}
+
+variable "ssh_pub_key_file" {}

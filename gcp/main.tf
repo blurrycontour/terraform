@@ -38,16 +38,10 @@ resource "google_compute_instance" "terraform_instance" {
       // necessary even empty
     }
   }
-}
 
-resource "google_compute_network" "terraform_net" {
-  name                    = "terraform-net"
-  auto_create_subnetworks = false
-}
+  tags = [var.tag]
 
-resource "google_compute_subnetwork" "terraform-subnet" {
-  name          = "terraform-subnet"
-  region        = var.region
-  ip_cidr_range = "10.108.0.0/16"
-  network       = google_compute_network.terraform_net.self_link
+  metadata = {
+    ssh-keys = "${var.ssh_user}:${file(var.ssh_pub_key_file)}"
+  }
 }
