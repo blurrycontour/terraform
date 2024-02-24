@@ -18,7 +18,7 @@ resource "google_compute_disk" "default_boot_disk" {
   name  = "default-boot-disk"
   size  = 10
   type  = "pd-balanced"
-  image = "ubuntu-os-cloud/ubuntu-2204-lts"
+  image = var.os_image
 }
 
 resource "google_compute_instance" "terraform_instance" {
@@ -37,6 +37,13 @@ resource "google_compute_instance" "terraform_instance" {
     access_config {
       // necessary even empty
     }
+  }
+
+  scheduling {
+    automatic_restart   = true
+    on_host_maintenance = "MIGRATE"
+    preemptible         = false
+    provisioning_model  = "STANDARD"
   }
 
   tags = [var.tag]

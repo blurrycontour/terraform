@@ -25,3 +25,7 @@ variable "ssh_user" {
 }
 
 variable "ssh_pub_key_file" {}
+
+variable "os_image" {
+  default = "ubuntu-os-cloud/ubuntu-2204-lts"
+}
