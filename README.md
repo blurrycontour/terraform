@@ -25,21 +25,21 @@ tf init
 # Post Cluster Setup
 ```bash
 # Get kubectl config
-gcloud project list
+gcloud projects list
 gcloud container clusters get-credentials <cluster-name> --zone us-central1-c --project <project-id>
 
 # Install Knative Serving
 kubectl apply -f https://github.com/knative/serving/releases/download/knative-v1.13.1/serving-crds.yaml
 kubectl apply -f https://github.com/knative/serving/releases/download/knative-v1.13.1/serving-core.yaml
 
-# DNS
-kubectl apply -f https://github.com/knative/serving/releases/download/knative-v1.13.1/serving-default-domain.yaml
-
 # Install Istio
 kubectl apply -l knative.dev/crd-install=true -f https://github.com/knative/net-istio/releases/download/knative-v1.13.1/istio.yaml
 kubectl apply -f https://github.com/knative/net-istio/releases/download/knative-v1.13.1/istio.yaml
 kubectl apply -f https://github.com/knative/net-istio/releases/download/knative-v1.13.1/net-istio.yaml
 kubectl --namespace istio-system get service istio-ingressgateway
+
+# DNS
+kubectl apply -f https://github.com/knative/serving/releases/download/knative-v1.13.1/serving-default-domain.yaml
 
 # Enable sidecar injection
 kubectl label namespace <default> istio-injection=enabled --overwrite
