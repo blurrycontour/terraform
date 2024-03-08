@@ -61,6 +61,9 @@ kubectl delete crd kialis.kiali.io
 # Install prometheus for Istio
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.20/samples/addons/prometheus.yaml
 
+# Install grafana for Istio
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.20/samples/addons/grafana.yaml
+
 # Expose Kiali via Loadbalancer
 Kiali CR-> spec.deployment.service_type: LoadBalancer
 
