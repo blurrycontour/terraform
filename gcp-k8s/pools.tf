@@ -1,8 +1,8 @@
 resource "google_container_node_pool" "spot_medium_node_pool" {
   name       = "spot-medium-pool"
   cluster    = google_container_cluster.terraform_cluster.name
-  location = var.zone
-  node_count = 4
+  location   = var.zone
+  node_count = 2
 
   autoscaling {
     min_node_count = 0
@@ -47,8 +47,14 @@ resource "google_container_node_pool" "spot_medium_node_pool" {
 resource "google_container_node_pool" "spot_standard_node_pool" {
   name       = "spot-standard-pool"
   cluster    = google_container_cluster.terraform_cluster.name
-  location = var.zone
+  location   = var.zone
   node_count = 2
+
+  autoscaling {
+    location_policy      = "BALANCED"
+    total_min_node_count = 0
+    total_max_node_count = 10
+  }
 
   node_config {
     preemptible  = true
